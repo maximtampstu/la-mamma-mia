@@ -1,15 +1,15 @@
 const Bill = () => {
 
     return (
-        <li>
-            <div>
+        <li className="bill">
+            <div className="bill__head">
                 <div>
                     <h3>Table 1</h3>
                     <p>Status: Ready to order</p>
                 </div>
                 <button>v</button>
             </div>
-            <ul>
+            <ul className="bill__list">
                 <li>
                     <p>1x Pizza</p>
                     <p>€14.00</p>
@@ -23,7 +23,7 @@ const Bill = () => {
                     <p>€24.00</p>
                 </li>
             </ul>
-            <div>
+            <div className="bill__total">
                 <p>Total</p>
                 <p>€76.00</p>
             </div>
