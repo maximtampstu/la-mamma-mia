@@ -4,7 +4,7 @@ const Table = () => {
         <li className="table">
             <div className="table__head">
                 <h3>Table 1</h3>
-                <img src="#" alt="VIP" />
+                <img src="src/assets/vip.svg" alt="VIP" />
             </div>
             <div className="table__content">
                 {/*<div className="table__info">

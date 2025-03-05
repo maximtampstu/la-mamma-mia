@@ -5,7 +5,7 @@ const Order = () => {
             <div className="order__content">
                 <div className="order__head">
                     <h3>Table 1</h3>
-                    <img src="#" alt="VIP" />
+                    <img src="src/assets/vip.svg" alt="VIP" />
                 </div>
                 <ul className="order__list">
                     <li>Pizza: 1</li>

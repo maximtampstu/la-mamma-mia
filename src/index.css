@@ -39,6 +39,16 @@ button{
 
 
 
+#root{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url(./assets/grid.svg);
+}
 
 
 
@@ -52,9 +62,14 @@ button{
   border-color: #6D644B;
 
   width: max-content;
+  height: max-content;
   padding: 1.5rem;
 
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
+
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 1;
 }
 
 .add-customer form{
@@ -72,13 +87,6 @@ button{
 
 
 
-
-
-
-
-
-
-
 /* BILL LIST */
 
 .bill-list{
@@ -90,7 +98,13 @@ button{
   border-color: #2F2610;
   
   padding: 1.5rem;
+  margin-left: auto;
+  overflow-y: scroll;
   width: max-content;
+
+  grid-column: 3;
+  grid-row: 2 / span 2;
+  z-index: 1;
 }
 
 .bill-list ul{
@@ -160,7 +174,12 @@ button{
   border-color: #544C38;
 
   display: grid;
-  width: max-content;
+  overflow: hidden;
+  height: max-content;
+
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  z-index: 3;
 }
 
 .order-list__beam, .order-list__list{
@@ -223,6 +242,14 @@ button{
 
 /* TABLE LIST */
 
+.table-list{
+  grid-column: 1 / span 2;
+  grid-row: 2;
+
+  place-self: center;
+  z-index: 0;
+}
+
 .table-list__list{
   display: flex;
   gap: 2rem;
@@ -239,6 +266,8 @@ button{
   border-style: solid;
   border-color: #8D846A;
   border-width: 4px;
+
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
 }
 
 .table__head{
@@ -304,7 +333,12 @@ button{
   border-radius: 0.5rem;
 
   width: max-content;
+  height: max-content;
   padding: 0.5rem;
+
+  grid-column: 1;
+  grid-row: 3;
+  z-index: 2;
 }
 
 
@@ -321,7 +355,14 @@ button{
   border-radius: 0.5rem;
 
   width: max-content;
-  padding: 1.5rem;
+  height: max-content;
+  padding: 1.8rem;
+
+  grid-column: 3;
+  grid-row: 1;
+  z-index: 2;
+
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
 }
 
 .total-served h2{
