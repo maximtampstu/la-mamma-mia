@@ -1,8 +1,8 @@
 const TotalEarned = () => {
 
     return (
-        <section>
-            <h2>Total Earned</h2>
+        <section className="total-earned">
+            <h2 className="visually-hidden">Total Earned</h2>
             <p>Total Earned: €1000</p>
         </section>
     );

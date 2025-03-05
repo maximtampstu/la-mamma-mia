@@ -1,14 +1,16 @@
 const Table = () => {
 
     return (
-        <li>
-            <div>
+        <li className="table">
+            <div className="table__head">
                 <h3>Table 1</h3>
                 <img src="#" alt="VIP" />
             </div>
-            <div>
-                <p>Waiting on order</p>
-                <form>
+            <div className="table__content">
+                {/*<div className="table__info">
+                    <p>Waiting on order</p>
+                </div>*/}
+                <form className="table__form">
                     <div>
                         <label htmlFor="pizza">Pizza</label>
                         <input type="number" id="pizza" value={0} min="0"/>

@@ -1,7 +1,7 @@
 const ProductList = () => {
 
     return (
-        <li>
+        <li className="product-list">
             <h3>Drinks</h3>
             <ul>
                 <li>Water: 2</li>

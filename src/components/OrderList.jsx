@@ -3,9 +3,10 @@ import Order from "./Order"
 const OrderList = () => {
 
     return (
-        <section>
-            <h2>Order list</h2>
-            <ul>
+        <section className="order-list">
+            <h2 className="visually-hidden">Order list</h2>
+            <div className="order-list__beam"></div>
+            <ul className="order-list__list">
                 <Order />
                 <Order />
                 <Order />

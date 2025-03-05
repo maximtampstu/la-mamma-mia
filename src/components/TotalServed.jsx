@@ -3,7 +3,7 @@ import ProductList from "./ProductList"
 const TotalServed = () => {
 
     return (
-        <section>
+        <section className="total-served">
             <h2>Total Products served</h2>
             <ul>
                 <ProductList />
