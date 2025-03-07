@@ -1,13 +1,12 @@
-const ProductList = () => {
+const ProductList = ({title, data}) => {
 
     return (
         <li className="product-list">
-            <h3>Drinks</h3>
+            <h3>{title}</h3>
             <ul>
-                <li>Water: 2</li>
-                <li>San Pellegrino: 3</li>
-                <li>Espresso: 1</li>
-                <li>Italian Wine: 3</li>
+                {data.map((product) => (
+                    <li key={product.id}>{product.name}: {product.timesOrderd}</li>
+                ))}
             </ul>
         </li>
     );

@@ -1,34 +1,37 @@
-const Table = () => {
+import TableForm from "./TableForm"
 
+const Table = ({ dataTable, dataClient, dataProducts }) => {
     return (
         <li className="table">
             <div className="table__head">
-                <h3>Table 1</h3>
-                <img src="src/assets/vip.svg" alt="VIP" />
+                <h3>Table {dataTable.tableNumber}</h3>
+                {dataClient && dataClient.kind !== "default" && (
+                    dataClient.kind === "vip" ? (
+                        <img src="src/assets/vip.svg" alt="VIP" />
+                    ) : dataClient.kind === "birthday" ? (
+                        <img src="src/assets/crown.svg" alt="Crown" />
+                    ) : null
+                )}
             </div>
             <div className="table__content">
-                {/*<div className="table__info">
-                    <p>Waiting on order</p>
-                </div>*/}
-                <form className="table__form">
-                    <div>
-                        <label htmlFor="pizza">Pizza</label>
-                        <input type="number" id="pizza" value={0} min="0"/>
+                {dataClient === undefined ? (
+                    <div className="table__info">
+                        <p>Empty</p>
                     </div>
-                    <div>
-                        <label htmlFor="spaghetti">Spaghetti</label>
-                        <input type="number" id="spaghetti" value={0} min="0" />
-                    </div>
-                    <div>
-                        <label htmlFor="lasagne">Lasagne</label>
-                        <input type="number" id="lasagne" value={0} min="0" />
-                    </div>
-                    <div>
-                        <label htmlFor="risotto">Risotto</label>
-                        <input type="number" id="risotto" value={0} min="0" />
-                    </div>
-                    <button type="submit">Order</button>
-                </form>
+                ) : dataClient.statusNumber > 0 && dataClient.statusNumber < 8 ? (
+                        dataClient.statusNumber === 7 ? (
+                            <div className="table__info">
+                                <p>Total of: €100</p>
+                                <button>Pay</button>
+                            </div>
+                        ) : dataClient.statusNumber % 2 === 0 ? (
+                            <div className="table__info">
+                                <p>Waiting on {dataClient.statusNumber === 2 ? "Drinks" : dataClient.statusNumber === 4 ? "Main Course" : dataClient.statusNumber === 6 ? "Dessert" : ""}</p>
+                            </div>
+                        ) : (
+                            <TableForm course={dataClient.statusNumber === 1 ? dataProducts.drinks : dataClient.statusNumber === 3 ? dataProducts.mainCourses : dataClient.statusNumber === 5 ? dataProducts.desserts : ""} />
+                        )
+                ) : null}
             </div>
         </li>
     );
