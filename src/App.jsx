@@ -19,11 +19,22 @@ function App() {
         statusNumber: 7,
         consumentProducts: [
           {
-            course: "drinks",
-            productId: 2,
-            amount: 3
-          }
-        ]
+            productName: "Espresso",
+            amount: 3,
+            totalCost: 6
+          },
+          {
+            productName: "Pizza",
+            amount: 3,
+            totalCost: 37.5
+          },
+          {
+            productName: "Tiramisu",
+            amount: 2,
+            totalCost: 13
+          },
+        ],
+        totalSpent: 56.5
       },
       {
         id: 1,
@@ -32,16 +43,17 @@ function App() {
         statusNumber: 6,
         consumentProducts: [
           {
-            course: "drinks",
-            productId: 3,
-            amount: 1
+            productName: "Italian Wine",
+            amount: 1,
+            totalCost: 5.5
           },
           {
-            course: "mainCourses",
-            productId: 2,
-            amount: 3
+            productName: "Spaghetti",
+            amount: 2,
+            totalCost: 23
           }
-        ]
+        ],
+        totalSpent: 28.5
       }
     ],
     tables: [
@@ -70,7 +82,24 @@ function App() {
         clientId: null
       }
     ],
-    orders: "mango",
+    orders: [
+      {
+        tableId: 1,
+        clientId: 1,
+        products: [
+          {
+            productName: "Cotta",
+            amount: 3,
+            totalCost: 18
+          },
+          {
+            productName: "Tiramisu",
+            amount: 2,
+            totalCost: 13
+          },
+        ]
+      }
+    ],
     totalEarned: 1000,
     products: {
       drinks: [
@@ -157,8 +186,8 @@ function App() {
   return (
     <>
       <AddCustomer />
-      <BillList />
-      <OrderList />
+      <BillList dataTables={data.tables} dataClients={data.clients} />
+      <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} />
       <TableList dataTables={data.tables} dataClients={data.clients} dataProducts={data.products} />
       <TotalEarned data={data.totalEarned} />
       <TotalServed data={data.products} />

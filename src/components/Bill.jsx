@@ -1,31 +1,52 @@
-const Bill = () => {
+const Bill = ({tableNumber, dataClient}) => {
 
+    let status = "Waiting"
+    switch (dataClient.statusNumber) {
+        case 1:
+            status = "Ready to order Drinks"
+            break;
+        case 2:
+            status = "Waiting on Drinks"
+            break;
+        case 3:
+            status = "Ready to order Main Course"
+            break;
+        case 4:
+            status = "Waiting on Main Course"
+            break;
+        case 5:
+            status = "Ready to order Dessert"
+            break;
+        case 6:
+            status = "Waiting on Dessert"
+            break;
+        case 7:
+            status = "Ready to Pay"
+            break;
+    
+        default:
+            break;
+    }
     return (
         <li className="bill">
             <div className="bill__head">
                 <div>
-                    <h3>Table 1</h3>
-                    <p>Status: Ready to order</p>
+                    <h3>Table {tableNumber}</h3>
+                    <p>Status: {status}</p>
                 </div>
                 <button>v</button>
             </div>
             <ul className="bill__list">
-                <li>
-                    <p>1x Pizza</p>
-                    <p>€14.00</p>
-                </li>
-                <li>
-                    <p>3x Risotto</p>
-                    <p>€38.00</p>
-                </li>
-                <li>
-                    <p>4x Gelato</p>
-                    <p>€24.00</p>
-                </li>
+                {dataClient.consumentProducts.map((product, index) => (
+                    <li key={index}>
+                        <p>{product.amount}x {product.productName}</p>
+                        <p>€{product.totalCost}</p>
+                    </li>
+                ))}
             </ul>
             <div className="bill__total">
                 <p>Total</p>
-                <p>€76.00</p>
+                <p>€{dataClient.totalSpent}</p>
             </div>
         </li>
     );

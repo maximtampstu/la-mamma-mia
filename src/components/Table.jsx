@@ -21,7 +21,7 @@ const Table = ({ dataTable, dataClient, dataProducts }) => {
                 ) : dataClient.statusNumber > 0 && dataClient.statusNumber < 8 ? (
                         dataClient.statusNumber === 7 ? (
                             <div className="table__info">
-                                <p>Total of: €100</p>
+                                <p>Total of: €{dataClient.totalSpent}</p>
                                 <button>Pay</button>
                             </div>
                         ) : dataClient.statusNumber % 2 === 0 ? (
