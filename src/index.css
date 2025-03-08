@@ -147,6 +147,10 @@ button{
   color: #FFFCD3;
 }
 
+.upsidedown{
+  rotate: 180deg;
+}
+
 .bill__list{
   display: flex;
   flex-direction: column;
