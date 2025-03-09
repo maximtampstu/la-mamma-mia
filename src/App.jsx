@@ -54,6 +54,22 @@ function App() {
           }
         ],
         totalSpent: 28.5
+      },
+      {
+        id: 2,
+        kind: null,
+        tableId: 2,
+        statusNumber: 0,
+        consumentProducts: [],
+        totalSpent: 0
+      },
+      {
+        id: 3,
+        kind: null,
+        tableId: 3,
+        statusNumber: 0,
+        consumentProducts: [],
+        totalSpent: 0
       }
     ],
     tables: [
@@ -73,13 +89,13 @@ function App() {
         id: 2,
         tableNumber: 3,
         taken: false,
-        clientId: null
+        clientId: 2
       },
       {
         id: 3,
         tableNumber: 4,
         taken: false,
-        clientId: null
+        clientId: 3
       }
     ],
     orders: [
@@ -183,9 +199,28 @@ function App() {
     }
   });
 
+  const handleAddCustomer = (kind) => {
+    for (const table of data.tables) {
+      if (!table.taken) {
+        setData({
+          ...data,
+          tables: data.tables.map(tableItem =>
+            tableItem.id === table.id ? { ...tableItem, taken: true } : tableItem
+          ),
+          clients: data.clients.map(client => 
+            client.id === table.clientId ? { ...client, statusNumber: 1, kind: kind } : client
+          ),
+        })
+        
+        console.log(data)
+        break;
+      }
+    }
+  }
+
   return (
     <>
-      <AddCustomer />
+      <AddCustomer handleAddCustomer={handleAddCustomer}/>
       <BillList dataTables={data.tables} dataClients={data.clients} />
       <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} />
       <TableList dataTables={data.tables} dataClients={data.clients} dataProducts={data.products} />

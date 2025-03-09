@@ -14,7 +14,7 @@ const Table = ({ dataTable, dataClient, dataProducts }) => {
                 )}
             </div>
             <div className="table__content">
-                {dataClient === undefined ? (
+                {dataTable.taken === false ? (
                     <div className="table__info">
                         <p>Empty</p>
                     </div>
