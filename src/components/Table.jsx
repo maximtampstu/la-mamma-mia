@@ -1,6 +1,6 @@
 import TableForm from "./TableForm"
 
-const Table = ({ dataTable, dataClient, dataProducts }) => {
+const Table = ({ dataTable, dataClient, dataProducts, handleTableForm }) => {
     return (
         <li className="table">
             <div className="table__head">
@@ -29,7 +29,7 @@ const Table = ({ dataTable, dataClient, dataProducts }) => {
                                 <p>Waiting on {dataClient.statusNumber === 2 ? "Drinks" : dataClient.statusNumber === 4 ? "Main Course" : dataClient.statusNumber === 6 ? "Dessert" : ""}</p>
                             </div>
                         ) : (
-                            <TableForm course={dataClient.statusNumber === 1 ? dataProducts.drinks : dataClient.statusNumber === 3 ? dataProducts.mainCourses : dataClient.statusNumber === 5 ? dataProducts.desserts : ""} />
+                        < TableForm handleTableForm={handleTableForm} tableId={dataTable.id} clientId={dataClient.id} clientStatusNumber={dataClient.statusNumber} course={dataClient.statusNumber === 1 ? dataProducts.drinks : dataClient.statusNumber === 3 ? dataProducts.mainCourses : dataClient.statusNumber === 5 ? dataProducts.desserts : ""} />
                         )
                 ) : null}
             </div>

@@ -325,6 +325,22 @@ button{
   border: var(--color-black) 1px solid;
 }
 
+.table__form .red-input{
+  border-color: rgb(189, 38, 38);
+}
+
+.table__form .table__bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.table__error{
+  color: rgb(189, 38, 38);
+  font-weight: bold;
+  text-align: center;
+}
+
 .table__form button{
   place-self: end;
 }

@@ -212,10 +212,40 @@ function App() {
           ),
         })
         
-        console.log(data)
         break;
       }
     }
+  }
+  console.log(data)
+
+
+  const handleTableForm = (products, courseItems, tableId, clientId, clientStatusNumber) => {
+    let productList = [];
+
+    products.forEach(product => {
+      if(product.value > 0){
+        productList.push({
+          productName: courseItems[product.id].name,
+          amount: parseInt(product.value),
+          totalCost: courseItems[product.id].price * parseInt(product.value)
+        })
+      }
+    });
+
+    let newOrder = {
+      tableId: tableId,
+      clientId: clientId,
+      products: productList
+    }
+
+    setData({
+      ...data,
+      orders: [...data.orders, newOrder],
+      clients: data.clients.map(client =>
+        client.id === clientId ? { ...client, statusNumber: clientStatusNumber + 1} : client
+      )
+    })
+    console.log(data)
   }
 
   return (
@@ -223,7 +253,7 @@ function App() {
       <AddCustomer handleAddCustomer={handleAddCustomer}/>
       <BillList dataTables={data.tables} dataClients={data.clients} />
       <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} />
-      <TableList dataTables={data.tables} dataClients={data.clients} dataProducts={data.products} />
+      <TableList dataTables={data.tables} dataClients={data.clients} dataProducts={data.products} handleTableForm={handleTableForm} />
       <TotalEarned data={data.totalEarned} />
       <TotalServed data={data.products} />
     </>

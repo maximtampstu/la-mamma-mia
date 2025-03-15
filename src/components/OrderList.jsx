@@ -1,7 +1,7 @@
 import Order from "./Order"
 
 const OrderList = ({dataTables, dataClients, dataOrder}) => {
-
+    console.log(dataOrder)
     return (
         <section className="order-list">
             <h2 className="visually-hidden">Order list</h2>
