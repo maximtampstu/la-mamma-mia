@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { nameFinder, productPrice, totalPrice } from "../services/calculator"
 
 const Bill = ({tableNumber, dataClient}) => {
 
@@ -57,14 +58,14 @@ const Bill = ({tableNumber, dataClient}) => {
             <ul className="bill__list">
                 {dataClient.consumentProducts.map((product, index) => (
                     <li key={index}>
-                        <p>{product.amount}x {product.productName}</p>
-                        <p>€{product.totalCost}</p>
+                        <p>{product.amount}x {nameFinder(product.course, product.productId)}</p>
+                        <p>{new Intl.NumberFormat('en-DE', { style: 'currency', currency: 'EUR' }).format(productPrice(product.course, product.productId, product.amount))}</p>
                     </li>
                 ))}
             </ul>
             <div className="bill__total">
                 <p>Total</p>
-                <p>€{dataClient.totalSpent}</p>
+                <p>{new Intl.NumberFormat('en-DE', { style: 'currency', currency: 'EUR' }).format(totalPrice(dataClient.consumentProducts))}</p>
             </div>
         </li>
     );

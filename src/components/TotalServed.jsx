@@ -1,13 +1,14 @@
 import ProductList from "./ProductList"
+import { products } from "../services/products";
 
-const TotalServed = ({data}) => {
+const TotalServed = ({orderList}) => {
     return (
         <section className="total-served">
             <h2>Total Products served</h2>
             <ul>
-                <ProductList title={"Drinks"} data={data.drinks}/>
-                <ProductList title={"Main Courses"} data={data.mainCourses} />
-                <ProductList title={"Desserts"} data={data.desserts} />
+                <ProductList title={"Drinks"} products={products.drinks} course={"drinks"} orderList={orderList} />
+                <ProductList title={"Main Courses"} products={products.mainCourses} course={"mainCourses"} orderList={orderList} />
+                <ProductList title={"Desserts"} products={products.desserts} course={"desserts"} orderList={orderList} />
             </ul>
         </section>
     );

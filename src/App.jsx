@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [data, setData] = useState({
+  /*const [data, setData] = useState({
     clients: [
       {
         id: 0,
@@ -197,6 +197,111 @@ function App() {
         }
       ]
     }
+  });*/
+
+  const [data, setData] = useState({
+    clients: [
+      {
+        id: 0,
+        kind: "vip",
+        tableId: 0,
+        statusNumber: 7,
+        consumentProducts: [
+          {
+            course: "drinks",
+            productId: 2,
+            amount: 3,
+          },
+          {
+            course: "mainCourses",
+            productId: 1,
+            amount: 4,
+          },
+          {
+            course: "desserts",
+            productId: 3,
+            amount: 2,
+          },
+        ],
+      },
+      {
+        id: 1,
+        kind: "birthday",
+        tableId: 1,
+        statusNumber: 6,
+        consumentProducts: [
+          {
+            course: "drinks",
+            productId: 3,
+            amount: 1,
+          },
+          {
+            course: "mainCourses",
+            productId: 2,
+            amount: 2,
+          }
+        ],
+      },
+      {
+        id: 2,
+        kind: null,
+        tableId: 2,
+        statusNumber: 0,
+        consumentProducts: [],
+      },
+      {
+        id: 3,
+        kind: null,
+        tableId: 3,
+        statusNumber: 0,
+        consumentProducts: [],
+      }
+    ],
+    tables: [
+      {
+        id: 0,
+        tableNumber: 1,
+        taken: true,
+        clientId: 0
+      },
+      {
+        id: 1,
+        tableNumber: 2,
+        taken: true,
+        clientId: 1
+      },
+      {
+        id: 2,
+        tableNumber: 3,
+        taken: false,
+        clientId: 2
+      },
+      {
+        id: 3,
+        tableNumber: 4,
+        taken: false,
+        clientId: 3
+      }
+    ],
+    orders: [
+      {
+        tableId: 1,
+        clientId: 1,
+        served: false,
+        products: [
+          {
+            course: "desserts",
+            productId: 2,
+            amount: 3,
+          },
+          {
+            course: "desserts",
+            productId: 1,
+            amount: 1,
+          },
+        ]
+      }
+    ],
   });
 
   const handleAddCustomer = (kind) => {
@@ -217,17 +322,15 @@ function App() {
     }
   }
 
-  const handleTableForm = (products, courseItems, tableId, clientId, clientStatusNumber) => {
+  const handleTableForm = (products, course, tableId, clientId) => {
     let productList = [];
 
     products.forEach(product => {
-      if(product.value > 0){
-        productList.push({
-          productName: courseItems[product.id].name,
-          amount: parseInt(product.value),
-          totalCost: courseItems[product.id].price * parseInt(product.value)
-        })
-      }
+      productList.push({
+        course: course,
+        productId: parseInt(product.id),
+        amount: parseInt(product.value)
+      })
     });
 
     let newOrder = {
@@ -241,39 +344,23 @@ function App() {
       orders: data.clients[clientId].kind === "vip"
         ? [newOrder, ...data.orders] : [...data.orders, newOrder],
       clients: data.clients.map(client =>
-        client.id === clientId ? { ...client, statusNumber: clientStatusNumber + 1} : client
+        client.id === clientId ? { ...client, statusNumber: client.statusNumber + 1} : client
       )
     })
   }
-
-  console.log(data)
 
   const handleServe = (order) => {
     let addedPrice = 0;
     order.products.forEach(product => {
       addedPrice = addedPrice + product.totalCost;
     });
-    //desserts
+
     setData({
       ...data,
       orders: data.orders.slice(1),
       clients: data.clients.map(client =>
-        client.id === order.clientId ? { ...client, statusNumber: client.statusNumber + 1, consumentProducts: [...client.consumentProducts, ...order.products], totalSpent: client.totalSpent + addedPrice } : client
+        client.id === order.clientId ? { ...client, statusNumber: client.statusNumber + 1, consumentProducts: [...client.consumentProducts, ...order.products]} : client
       ),
-      /*products: order.products.forEach(product => 
-        data.products.forEach(course => 
-          course.map(dish =>
-            product.name === dish.name ? {...dish, timesOrderd: dish.timesOrderd + product.amount} : dish
-          )
-        )
-      )*/
-     
-     products: {
-      ...data.products,
-       desserts: data.products.desserts.map(dish =>
-         order.products.find(product => product.name === dish.name) ? { ...dish, timesOrderd: dish.timesOrderd + 1 } : dish
-       )
-     }
     })
   }
 
@@ -282,9 +369,9 @@ function App() {
       <AddCustomer handleAddCustomer={handleAddCustomer}/>
       <BillList dataTables={data.tables} dataClients={data.clients} />
       <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} handleServe={handleServe} />
-      <TableList dataTables={data.tables} dataClients={data.clients} dataProducts={data.products} handleTableForm={handleTableForm} />
-      <TotalEarned data={data.totalEarned} />
-      <TotalServed data={data.products} />
+      <TableList dataTables={data.tables} dataClients={data.clients} handleTableForm={handleTableForm} />
+      <TotalEarned/>
+      <TotalServed orderList={data.orders}/>
     </>
   )
 }

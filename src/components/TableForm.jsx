@@ -1,6 +1,17 @@
 import { useState } from 'react';
+import { nameFinder } from '../services/calculator';
+import { products } from "../services/products";
 
-const TableForm = ({ course, handleTableForm, tableId, clientId, clientStatusNumber }) => {
+
+const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm }) => {
+    let course = "";
+    if(clientStatusNumber === 1){
+        course = "drinks"
+    } else if (clientStatusNumber === 3) {
+        course = "mainCourses"
+    } else if (clientStatusNumber === 5) {
+        course = "desserts"
+    }
 
     const [values, setValues] = useState({
         0: 0,
@@ -25,28 +36,31 @@ const TableForm = ({ course, handleTableForm, tableId, clientId, clientStatusNum
 
         for (let i = 0; i < 4; i++) {
             totalValue = totalValue + parseInt(e.target[i].value)
-            products.push(e.target[i])
+            if (e.target[i].value > 0) {
+                products.push(e.target[i])
+                console.log(e.target[i])
+            }
         }
 
         if(totalValue > 0){
-            document.querySelectorAll(".table__input").forEach(item => {
+            e.target.querySelectorAll(".table__input").forEach(item => {
                 item.classList.remove("red-input")
             });
-            document.querySelector(".table__error").classList.add("visually-hidden")
-            handleTableForm(products, course, tableId, clientId, clientStatusNumber)
+            e.target.querySelector(".table__error").classList.add("visually-hidden")
+            handleTableForm(products, course, tableId, clientId)
         } else {
-            document.querySelectorAll(".table__input").forEach(item => {
+            e.target.querySelectorAll(".table__input").forEach(item => {
                 item.classList.add("red-input")
             });
-            document.querySelector(".table__error").classList.remove("visually-hidden")
+            e.target.querySelector(".table__error").classList.remove("visually-hidden")
         }
     }
 
     return (
         <form onSubmit={handleSubmitTable} className="table__form">
-            {course.map((product, index) => (
+            {products[course].map((product, index) => (
                 <div key={product.id}>
-                    <label htmlFor={product.name} >{product.name}</label>
+                    <label htmlFor={product.name} >{nameFinder(course, product.id)}</label>
                     <input className="table__input" type="number" id={index} value={values[index]} onChange={handleChange} min="0" />
                 </div>
             ))}
