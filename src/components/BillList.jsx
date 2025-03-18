@@ -1,7 +1,6 @@
 import Bill from "./Bill"
 
 const BillList = ({ dataTables, dataClients, dataProducts }) => {
-
     return (
         <section className="bill-list">
             <h2 className="visually-hidden">Bill list</h2>

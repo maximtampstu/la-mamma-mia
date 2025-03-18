@@ -1,4 +1,7 @@
-const Order = ({ dataTable, dataClient, dataOrder }) => {
+const Order = ({ dataTable, dataClient, dataOrder, orderId, handleServe }) => {
+    const handleClickServe = () => {
+        handleServe(dataOrder)
+    }
 
     return (
         <li className="order">
@@ -19,7 +22,7 @@ const Order = ({ dataTable, dataClient, dataOrder }) => {
                     ))}
                 </ul>
             </div>
-            <button>Serve</button>
+            <button className={orderId === 0 ? "" : "visually-hidden"} onClick={handleClickServe}>Serve</button>
         </li>
     );
 };

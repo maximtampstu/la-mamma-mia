@@ -216,8 +216,6 @@ function App() {
       }
     }
   }
-  console.log(data)
-
 
   const handleTableForm = (products, courseItems, tableId, clientId, clientStatusNumber) => {
     let productList = [];
@@ -240,19 +238,50 @@ function App() {
 
     setData({
       ...data,
-      orders: [...data.orders, newOrder],
+      orders: data.clients[clientId].kind === "vip"
+        ? [newOrder, ...data.orders] : [...data.orders, newOrder],
       clients: data.clients.map(client =>
         client.id === clientId ? { ...client, statusNumber: clientStatusNumber + 1} : client
       )
     })
-    console.log(data)
+  }
+
+  console.log(data)
+
+  const handleServe = (order) => {
+    let addedPrice = 0;
+    order.products.forEach(product => {
+      addedPrice = addedPrice + product.totalCost;
+    });
+    //desserts
+    setData({
+      ...data,
+      orders: data.orders.slice(1),
+      clients: data.clients.map(client =>
+        client.id === order.clientId ? { ...client, statusNumber: client.statusNumber + 1, consumentProducts: [...client.consumentProducts, ...order.products], totalSpent: client.totalSpent + addedPrice } : client
+      ),
+      /*products: order.products.forEach(product => 
+        data.products.forEach(course => 
+          course.map(dish =>
+            product.name === dish.name ? {...dish, timesOrderd: dish.timesOrderd + product.amount} : dish
+          )
+        )
+      )*/
+     
+     products: {
+      ...data.products,
+       desserts: data.products.desserts.map(dish =>
+         order.products.find(product => product.name === dish.name) ? { ...dish, timesOrderd: dish.timesOrderd + 1 } : dish
+       )
+     }
+    })
   }
 
   return (
     <>
       <AddCustomer handleAddCustomer={handleAddCustomer}/>
       <BillList dataTables={data.tables} dataClients={data.clients} />
-      <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} />
+      <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} handleServe={handleServe} />
       <TableList dataTables={data.tables} dataClients={data.clients} dataProducts={data.products} handleTableForm={handleTableForm} />
       <TotalEarned data={data.totalEarned} />
       <TotalServed data={data.products} />

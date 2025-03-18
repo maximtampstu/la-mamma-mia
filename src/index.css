@@ -37,6 +37,10 @@ button{
   padding: 0.25rem 0.5rem;
 }
 
+button:hover{
+  background-color: rgb(82, 79, 79);
+}
+
 
 
 #root{
@@ -179,7 +183,7 @@ button{
 
   display: grid;
   overflow: hidden;
-  height: max-content;
+  height: 15rem;
 
   grid-column: 2;
   grid-row: 1 / span 2;
