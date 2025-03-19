@@ -8,7 +8,6 @@ export const productPrice = (course, productId, amount) => {
 
 export const totalPrice = (productList) => {
     let totalPrice = 0;
-    console.log(productList)
     productList.forEach(product => {
         totalPrice = totalPrice + productPrice(product.course, product.productId, product.amount)
     });
@@ -27,11 +26,22 @@ export const totalServed = (course, productId, orders) => {
         if(order.served === true){
             order.products.forEach(product => {
                 if(product.productId === productId && product.course === course){
-                    console.log(course, productId)
                     amountServed = amountServed + product.amount
                 }
             });
         }
     });
     return amountServed;
+};
+
+export const totalEarned = (orders) => {
+    let amountEarned = 0
+    orders.forEach(order => {
+        if (order.served === true) {
+            order.products.forEach(product => {
+                amountEarned = amountEarned + productPrice(product.course, product.productId, product.amount)
+            });
+        }
+    });
+    return amountEarned;
 };

@@ -370,7 +370,7 @@ function App() {
       <BillList dataTables={data.tables} dataClients={data.clients} />
       <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} handleServe={handleServe} />
       <TableList dataTables={data.tables} dataClients={data.clients} handleTableForm={handleTableForm} />
-      <TotalEarned/>
+      <TotalEarned orderList={data.orders} />
       <TotalServed orderList={data.orders}/>
     </>
   )
