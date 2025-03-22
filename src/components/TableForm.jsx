@@ -3,7 +3,7 @@ import { nameFinder } from '../services/calculator';
 import { products } from "../services/products";
 
 
-const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm }) => {
+const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, clientKind }) => {
     let course = "";
     if(clientStatusNumber === 1){
         course = "drinks"
@@ -12,6 +12,7 @@ const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm }) =
     } else if (clientStatusNumber === 5) {
         course = "desserts"
     }
+    console.log(clientKind)
 
     const [values, setValues] = useState({
         0: 0,
@@ -59,9 +60,9 @@ const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm }) =
     return (
         <form onSubmit={handleSubmitTable} className="table__form">
             {products[course].map((product, index) => (
-                <div key={product.id}>
-                    <label htmlFor={product.name} >{nameFinder(course, product.id)}</label>
-                    <input className="table__input" type="number" id={index} value={values[index]} onChange={handleChange} min="0" />
+                <div key={product.id} className={course === "desserts" && product.id === 3 && clientKind != "birthday" ? "visually-hidden" : ""}>
+                    <label htmlFor={product.name} className={course === "desserts" && product.id === 3 && clientKind === "birthday" ? "table__birthday" : ""}>{nameFinder(course, product.id)}</label>
+                    <input className="table__input" type="number" id={index} value={values[index]} onChange={handleChange} min="0" max={course === "desserts" && product.id === 3 && clientKind === "birthday" ? "1" : "99"} />
                 </div>
             ))}
             <div className="table__bottom">

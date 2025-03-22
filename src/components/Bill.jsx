@@ -59,7 +59,7 @@ const Bill = ({tableNumber, dataClient}) => {
                 {dataClient.consumentProducts.map((product, index) => (
                     <li key={index}>
                         <p>{product.amount}x {nameFinder(product.course, product.productId)}</p>
-                        <p>{new Intl.NumberFormat('en-DE', { style: 'currency', currency: 'EUR' }).format(productPrice(product.course, product.productId, product.amount))}</p>
+                        <p>{productPrice(product.course, product.productId, product.amount) === 0 ? "FREE" : new Intl.NumberFormat('en-DE', { style: 'currency', currency: 'EUR' }).format(productPrice(product.course, product.productId, product.amount))}</p>
                     </li>
                 ))}
             </ul>

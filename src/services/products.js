@@ -15,6 +15,6 @@ export const products = {
         { id: 0, name: "Tiramisu", price: 6.5 },
         { id: 1, name: "Panna Cotta", price: 6 },
         { id: 2, name: "Gelato", price: 4.5 },
-        { id: 3, name: "Cake", price: 5.5 }
+        { id: 3, name: "Birthday Cake", price: 0 }
     ]
 };
