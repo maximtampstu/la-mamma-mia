@@ -1,4 +1,5 @@
 import Order from "./Order"
+import { firstOrderCheck } from "../services/calculator";
 
 const OrderList = ({ dataTables, dataClients, dataOrder, handleServe }) => {
     return (
@@ -7,7 +8,7 @@ const OrderList = ({ dataTables, dataClients, dataOrder, handleServe }) => {
             <div className="order-list__beam"></div>
             <ul className="order-list__list">
                 {dataOrder.map((order, index) => (
-                    <Order key={index} tableNumber={dataTables[order.tableId].tableNumber} clientKind={dataClients[order.clientId].kind} dataOrder={order} firstOrder={true} handleServe={handleServe} />
+                    <Order key={index} tableNumber={dataTables[order.tableId].tableNumber} clientKind={dataClients[order.clientId].kind} dataOrder={order} firstOrder={firstOrderCheck(order.id, dataOrder)} handleServe={handleServe} />
                 ))}
             </ul>
         </section>

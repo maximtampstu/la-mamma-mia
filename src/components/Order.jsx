@@ -6,7 +6,7 @@ const Order = ({ tableNumber, clientKind, dataOrder, firstOrder, handleServe }) 
     }
 
     return (
-        <li className="order">
+        <li className={dataOrder.served ? "order visually-hidden" : "order"}>
             <div className="order__content">
                 <div className="order__head">
                     <h3>Table {tableNumber}</h3>

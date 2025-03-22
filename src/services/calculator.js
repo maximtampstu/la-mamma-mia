@@ -20,6 +20,20 @@ export const nameFinder = (course, productId) => {
     return name;
 };
 
+export const firstOrderCheck = (orderId, orders) => {
+    let orderValue = false;
+    for (const order of orders) { //zorgt er voor dat bij de eerste oder die niet geserved is true is en bij de rest false
+        if (!order.served) {
+            if (order.id === orderId){
+                orderValue = true
+                return orderValue;
+            }
+            break;
+        }
+    }
+    return orderValue;
+};
+
 export const totalServed = (course, productId, orders) => {
     let amountServed = 0
     orders.forEach(order => {
@@ -37,7 +51,7 @@ export const totalServed = (course, productId, orders) => {
 export const totalEarned = (orders) => {
     let amountEarned = 0
     orders.forEach(order => {
-        if (order.served === true) {
+        if (order.payed === true) {
             order.products.forEach(product => {
                 amountEarned = amountEarned + productPrice(product.course, product.productId, product.amount)
             });

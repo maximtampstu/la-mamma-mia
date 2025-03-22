@@ -1,7 +1,12 @@
 import TableForm from "./TableForm"
 import { totalPrice } from "../services/calculator";
 
-const Table = ({ dataTable, dataClient, handleTableForm }) => {
+const Table = ({ dataTable, dataClient, handleTableForm, handlePay }) => {
+
+    const handleClickPay = () => {
+        handlePay(dataClient.id)
+    }
+
     return (
         <li className="table">
             <div className="table__head">
@@ -23,7 +28,7 @@ const Table = ({ dataTable, dataClient, handleTableForm }) => {
                         dataClient.statusNumber === 7 ? (
                             <div className="table__info">
                                 <p>Total of: {new Intl.NumberFormat('en-DE', { style: 'currency', currency: 'EUR' }).format(totalPrice(dataClient.consumentProducts))}</p>
-                                <button>Pay</button>
+                                <button onClick={handleClickPay}>Pay</button>
                             </div>
                         ) : dataClient.statusNumber % 2 === 0 ? (
                             <div className="table__info">

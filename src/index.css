@@ -104,7 +104,7 @@ button:hover{
   padding: 1.5rem;
   margin-left: auto;
   overflow-y: scroll;
-  width: max-content;
+  width: 27rem;
 
   grid-column: 3;
   grid-row: 2 / span 2;
@@ -176,6 +176,7 @@ button:hover{
 /* ORDER LIST */
 
 .order-list{
+  filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.25));
   background-color: #6D644B;
   border-style: none solid solid solid;
   border-width: 4px;
