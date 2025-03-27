@@ -12,7 +12,6 @@ const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, cli
     } else if (clientStatusNumber === 5) {
         course = "desserts"
     }
-    console.log(clientKind)
 
     const [values, setValues] = useState({
         0: 0,
@@ -39,7 +38,6 @@ const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, cli
             totalValue = totalValue + parseInt(e.target[i].value)
             if (e.target[i].value > 0) {
                 products.push(e.target[i])
-                console.log(e.target[i])
             }
         }
 

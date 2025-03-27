@@ -1,4 +1,6 @@
 import { nameFinder } from "../services/calculator";
+import vipPhoto from "../assets/vip.svg"
+import crownPhoto from "../assets/crown.svg"
 
 const Order = ({ tableNumber, clientKind, dataOrder, firstOrder, handleServe }) => {
     const handleClickServe = () => {
@@ -10,13 +12,7 @@ const Order = ({ tableNumber, clientKind, dataOrder, firstOrder, handleServe }) 
             <div className="order__content">
                 <div className="order__head">
                     <h3>Table {tableNumber}</h3>
-                    { clientKind !== "default" && (
-                        clientKind === "vip" ? (
-                            <img src="src/assets/vip.svg" alt="VIP" />
-                        ) : clientKind === "birthday" ? (
-                            <img src="src/assets/crown.svg" alt="Crown" />
-                        ) : null
-                    )}
+                    {clientKind !== "default" ? <img src={clientKind === "vip" ? vipPhoto : crownPhoto} alt="Client kind icon" /> : ""}
                 </div>
                 <ul className="order__list">
                     {dataOrder.products.map((product, index) => (
