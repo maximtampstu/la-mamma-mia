@@ -1,5 +1,5 @@
 import ProductList from "./ProductList"
-import { products } from "../services/products";
+import { products } from "../services/data";
 
 const TotalServed = ({orderList}) => {
     return (

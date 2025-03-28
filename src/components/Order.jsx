@@ -20,7 +20,10 @@ const Order = ({ tableNumber, clientKind, dataOrder, firstOrder, handleServe }) 
                     ))}
                 </ul>
             </div>
-            <button className={firstOrder === true ? "" : "visually-hidden"} onClick={handleClickServe}>Serve</button>
+            <div className="order__bottom">
+                <p>Order {dataOrder.id + 1}</p>
+                <button className={firstOrder === true ? "" : "visually-hidden"} onClick={handleClickServe}>Serve</button>
+            </div>
         </li>
     );
 };

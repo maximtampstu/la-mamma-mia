@@ -1,4 +1,4 @@
-import { products } from "./products"
+import { products } from "./data"
 
 export const productPrice = (course, productId, amount) => {
     const product = products[course].find((product) => product.id === productId)

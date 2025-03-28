@@ -1,5 +1,5 @@
-import TableForm from "./TableForm"
 import { totalPrice } from "../services/calculator";
+import TableForm from "./TableForm"
 import vipPhoto from "../assets/vip.svg"
 import crownPhoto from "../assets/crown.svg"
 
@@ -8,8 +8,6 @@ const Table = ({ dataTable, dataClient, handleTableForm, handlePay }) => {
     const handleClickPay = () => {
         handlePay(dataClient.id)
     }
-
-    console.log(dataClient.kind)
 
     return (
         <li className="table">

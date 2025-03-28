@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { nameFinder } from '../services/calculator';
-import { products } from "../services/products";
+import { products } from "../services/data";
 
 
 const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, clientKind }) => {

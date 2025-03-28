@@ -243,8 +243,15 @@ button:hover{
   gap: 0.25rem;
 }
 
-.order button{
-  place-self: end;
+.order__bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order__bottom p{
+  opacity: 25%;
+  font-style: italic;
 }
 
 
@@ -257,6 +264,7 @@ button:hover{
 
   place-self: center;
   z-index: 0;
+  margin-top: 2.5rem;
 }
 
 .table-list__list{
@@ -375,8 +383,9 @@ button:hover{
   width: max-content;
   height: max-content;
   padding: 0.5rem;
+  place-self: end;
 
-  grid-column: 1;
+  grid-column: 3;
   grid-row: 3;
   z-index: 2;
 }
@@ -422,4 +431,103 @@ button:hover{
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+
+
+/* GRAPHIC */
+
+.graphic{
+  color: #06B500;
+  background-color: var(--color-black);
+  
+  border-style: solid;
+  border-color: #7A7A7A;
+  border-width: 4px;
+  border-radius: 0.5rem;
+
+  width: max-content;
+  height: max-content;
+  padding: 1rem;
+
+  grid-row: 3;
+  grid-column: 1 / span 2;
+}
+
+.graphic h2{
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.graphic__content{
+  display: grid;
+  grid-template-columns: 4rem 20rem;
+  grid-template-rows: 6rem max-content;
+}
+
+.graphic__numbers{
+  grid-row: 1;
+  grid-column: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+
+  border-style: none solid none none;
+  border-color: #06B500;
+  border-width: 1px;
+
+  padding-right: 0.25rem;
+}
+
+.graphic__data {
+  grid-row: 1;
+  grid-column: 2;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.graphic__pillars{
+  grid-row: 1;
+  grid-column: 1;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  gap: 1rem;
+}
+
+.graphic__pillar{
+  height: 50%;
+  width: 2.5rem;
+  background-color: #06B500;
+}
+
+.graphic__average{
+  grid-row: 1;
+  grid-column: 1;
+
+  border-style: solid none none none;
+  border-color: red;
+  border-width: 2px;
+
+  align-self: end;
+}
+
+.graphic__labels {
+  grid-row: 2;
+  grid-column: 2;
+
+  display: flex;
+  justify-content: space-between;
+
+  border-style: solid none none none;
+  border-color: #06B500;
+  border-width: 1px;
+
+  padding: 0 0.5rem;
+  padding-top: 0.25rem;
 }
