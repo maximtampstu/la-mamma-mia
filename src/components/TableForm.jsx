@@ -3,13 +3,13 @@ import { nameFinder } from '../services/calculator';
 import { products } from "../services/data";
 
 
-const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, clientKind }) => {
+const TableForm = ({ tableId, dataClient, handleTableForm }) => {
     let course = "";
-    if(clientStatusNumber === 1){
+    if(dataClient.statusNumber === 1){
         course = "drinks"
-    } else if (clientStatusNumber === 3) {
+    } else if (dataClient.statusNumber === 3) {
         course = "mainCourses"
-    } else if (clientStatusNumber === 5) {
+    } else if (dataClient.statusNumber === 5) {
         course = "desserts"
     }
 
@@ -46,7 +46,7 @@ const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, cli
                 item.classList.remove("red-input")
             });
             e.target.querySelector(".table__error").classList.add("visually-hidden")
-            handleTableForm(products, course, tableId, clientId)
+            handleTableForm(products, course, tableId, dataClient.id)
         } else {
             e.target.querySelectorAll(".table__input").forEach(item => {
                 item.classList.add("red-input")
@@ -58,9 +58,9 @@ const TableForm = ({ tableId, clientId, clientStatusNumber, handleTableForm, cli
     return (
         <form onSubmit={handleSubmitTable} className="table__form">
             {products[course].map((product, index) => (
-                <div key={product.id} className={course === "desserts" && product.id === 3 && clientKind != "birthday" ? "visually-hidden" : ""}>
-                    <label htmlFor={product.name} className={course === "desserts" && product.id === 3 && clientKind === "birthday" ? "table__birthday" : ""}>{nameFinder(course, product.id)}</label>
-                    <input className="table__input" type="number" id={index} value={values[index]} onChange={handleChange} min="0" max={course === "desserts" && product.id === 3 && clientKind === "birthday" ? "1" : "99"} />
+                <div key={product.id} className={course === "desserts" && product.id === 3 && dataClient.kind != "birthday" ? "visually-hidden" : ""}>
+                    <label htmlFor={product.name} className={course === "desserts" && product.id === 3 && dataClient.kind === "birthday" ? "table__birthday" : ""}>{nameFinder(course, product.id)}</label>
+                    <input className="table__input" type="number" id={index} value={values[index]} onChange={handleChange} min="0" max={course === "desserts" && product.id === 3 && dataClient.kind === "birthday" ? "1" : "99"} />
                 </div>
             ))}
             <div className="table__bottom">

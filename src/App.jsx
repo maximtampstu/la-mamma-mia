@@ -53,8 +53,7 @@ function App() {
 
     setData({
       ...data,
-      orders: data.clients[clientId].kind === "vip"
-        ? [newOrder, ...data.orders] : [...data.orders, newOrder],
+      orders: data.clients[clientId].kind === "vip" ? [newOrder, ...data.orders] : [...data.orders, newOrder],
       clients: data.clients.map(client =>
         client.id === clientId ? { ...client, statusNumber: client.statusNumber + 1} : client
       )
@@ -92,7 +91,7 @@ function App() {
     <>
       <AddCustomer handleAddCustomer={handleAddCustomer}/>
       <BillList dataTables={data.tables} dataClients={data.clients} />
-      <OrderList dataTables={data.tables} dataClients={data.clients} dataOrder={data.orders} handleServe={handleServe} />
+      <OrderList data={data} handleServe={handleServe} />
       <TableList dataTables={data.tables} dataClients={data.clients} handleTableForm={handleTableForm} handlePay={handlePay} />
       <TotalEarned orderList={data.orders} />
       <TotalServed orderList={data.orders}/>

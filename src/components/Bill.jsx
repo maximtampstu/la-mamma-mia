@@ -2,7 +2,6 @@ import { useState } from "react";
 import { nameFinder, productPrice, totalPrice } from "../services/calculator"
 
 const Bill = ({tableNumber, dataClient}) => {
-
     let status = "Waiting"
 
     switch (dataClient.statusNumber) {
@@ -33,6 +32,7 @@ const Bill = ({tableNumber, dataClient}) => {
     }
 
     const [isOpen, setIsOpen] = useState(true);
+
     const handleClickDropDown = (e) => {
         const billTag = e.target.parentElement.parentElement
         if(isOpen === true){
@@ -51,7 +51,7 @@ const Bill = ({tableNumber, dataClient}) => {
             <div className="bill__head">
                 <div>
                     <h3>Table {tableNumber}</h3>
-                    <p>Status: {status}</p>
+                    <p>{status}</p>
                 </div>
                 <button className="upsidedown" onClick={handleClickDropDown}>v</button>
             </div>

@@ -8,6 +8,7 @@ const AddCustomer = ({handleAddCustomer}) => {
     return (
         <section className="add-customer">
             <h2>Add new Customer</h2>
+            <p>Select the kind of customer</p>
             <form onSubmit={handleSubmitAddCustomer}>
                 <label htmlFor="kind" className="visually-hidden">Add new Customer</label>
                 <select name="kind" id="kind">

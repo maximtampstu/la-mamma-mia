@@ -20,8 +20,7 @@ const Table = ({ dataTable, dataClient, handleTableForm, handlePay }) => {
                     <div className="table__info">
                         <p>Empty</p>
                     </div>
-                ) : dataClient.statusNumber > 0 && dataClient.statusNumber < 8 ? (
-                    dataClient.statusNumber === 7 ? (
+                ) : dataClient.statusNumber > 0 && dataClient.statusNumber < 8 ? ( dataClient.statusNumber === 7 ? (
                         <div className="table__info">
                             <p>Total of {new Intl.NumberFormat('en-DE', { style: 'currency', currency: 'EUR' }).format(totalPrice(dataClient.consumentProducts))}</p>
                             <button onClick={handleClickPay}>Pay</button>
@@ -31,7 +30,7 @@ const Table = ({ dataTable, dataClient, handleTableForm, handlePay }) => {
                             <p>Waiting on {dataClient.statusNumber === 2 ? "Drinks" : dataClient.statusNumber === 4 ? "Main Course" : dataClient.statusNumber === 6 ? "Dessert" : ""}</p>
                         </div>
                     ) : (
-                        < TableForm tableId={dataTable.id} clientId={dataClient.id} clientStatusNumber={dataClient.statusNumber} handleTableForm={handleTableForm} clientKind={dataClient.kind} />
+                        < TableForm tableId={dataTable.id} dataClient={dataClient} handleTableForm={handleTableForm} />
                     )
                 ) : null}
             </div>
